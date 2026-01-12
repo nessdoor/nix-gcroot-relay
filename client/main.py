@@ -63,12 +63,7 @@ def json_to_bytes(obj) -> bytes:
 
 
 def main(uuid: UUID, store_path: Path, gcroots_dir: Path, interval: int=300,
-         cid: int=2, port: int=25565, verbose: bool=False) -> None:
-    if verbose:
-        logging.basicConfig(level=logging.DEBUG)
-    else:
-        logging.basicConfig(level=logging.INFO)
-
+         cid: int=2, port: int=25565) -> None:
     # State object representing the current set of GC roots
     old_roots = find_roots(store_path, gcroots_dir)
 
@@ -124,7 +119,11 @@ def main(uuid: UUID, store_path: Path, gcroots_dir: Path, interval: int=300,
 
 if __name__ == "__main__":
     args = parser.parse_args()
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
     main(uuid=args.uuid,
          store_path=args.store, gcroots_dir=args.gcroots,
-         interval=args.interval, cid=args.address, port=args.port,
-         verbose=args.verbose)
+         interval=args.interval, cid=args.address, port=args.port)
