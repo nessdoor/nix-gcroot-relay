@@ -7,8 +7,10 @@ pkgs.mkShell {
 
   packages = with pkgs; [
     (python3.withPackages (pps: with pps; [
+      systemd-python
       python-lsp-server
       python-lsp-server.passthru.optional-dependencies.all
     ]))
+    socat
   ];
 }
