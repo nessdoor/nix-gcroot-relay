@@ -44,7 +44,7 @@ def resolve_until_store(store_path: Path, p: Path) -> Path | None:
         return None
 
 
-def find_roots(store_path: Path, gcroots_dir: Path):
+def find_roots(store_path: Path, gcroots_dir: Path) -> dict[Path, Path]:
     """Find the set of currently-valid GC roots."""
     # Walk the entire GC roots directory and produce a list of roots
     files = (d / f for d, _, fs in gcroots_dir.walk() for f in fs)
