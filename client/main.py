@@ -80,7 +80,8 @@ def main(uuid: UUID, store_path: Path, gcroots_dir: Path, interval: int=300,
         s.sendall(json_to_bytes({"type": "init",
                                  "id": uuid.hex,
                                  "roots": [(str(r), str(t))
-                                           for r, t in old_roots.items()]}))
+                                           for r, t in old_roots.items()]}) +
+                  b'\n')
 
         # Constantly update the set of valid roots by sending differential messages
         logging.info("Periodic update started (interval: {}).".format(interval))
@@ -111,7 +112,7 @@ def main(uuid: UUID, store_path: Path, gcroots_dir: Path, interval: int=300,
                     "type": "update",
                     "added": [(str(r), str(t)) for r, t in new_roots],
                     "removed": [(str(r), str(t)) for r, t in removed_roots]
-                }))
+                }) + b'\n')
 
                 # Replace the set of known roots with a fresh one
                 old_roots = valid_roots
