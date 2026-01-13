@@ -16,4 +16,6 @@ buildPythonApplication {
   dependencies = [
     systemd-python
   ];
+
+  meta.mainProgram = "gcroot-relay-server";
 }

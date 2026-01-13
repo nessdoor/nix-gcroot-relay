@@ -11,4 +11,6 @@ buildPythonApplication {
   src = ./src;
 
   build-system = [ setuptools ];
+
+  meta.mainProgram = "gcroot-relay-client";
 }
