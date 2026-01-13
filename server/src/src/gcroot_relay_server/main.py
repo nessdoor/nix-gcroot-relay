@@ -19,7 +19,7 @@ parser.add_argument("-s", "--store",
                     type=Path, default=Path("/nix/store"),
                     help="Path to the Nix store (default: /nix/store)")
 parser.add_argument("-r", "--gcroots",
-                    type=Path, default=Path("/nix/var/nix/gcroots"),
+                    type=Path, default=Path("/nix/var/nix/gcroots/per-vm"),
                     help="Path to per-vm GC roots (default: /nix/var/nix/gcroots/per-vm)")
 
 
