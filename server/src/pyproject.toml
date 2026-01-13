@@ -1,0 +1,14 @@
+[project]
+name = "gcroot-relay-server"
+version = "0.1"
+requires-python = ">= 3.9"
+dependencies = [
+    "systemd-python"
+]
+
+[project.scripts]
+gcroot-relay-server = "gcroot_relay_server.main:main"
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"

@@ -62,8 +62,10 @@ def json_to_bytes(obj) -> bytes:
     return bytes(json.dumps(obj), encoding='utf-8')
 
 
-def main(uuid: UUID, store_path: Path, gcroots_dir: Path, interval: int=300,
-         cid: int=2, port: int=25565) -> None:
+def run_client(uuid: UUID,
+               store_path: Path, gcroots_dir: Path,
+               interval: int=300,
+               cid: int=2, port: int=25565) -> None:
     # State object representing the current set of GC roots
     old_roots = find_roots(store_path, gcroots_dir)
 
@@ -118,13 +120,18 @@ def main(uuid: UUID, store_path: Path, gcroots_dir: Path, interval: int=300,
                 old_roots = valid_roots
                 logging.debug("Update sent. Going to sleep...")
 
-if __name__ == "__main__":
+
+def main():
     args = parser.parse_args()
     if args.verbose:
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
 
-    main(uuid=args.uuid,
-         store_path=args.store, gcroots_dir=args.gcroots,
-         interval=args.interval, cid=args.address, port=args.port)
+    run_client(uuid=args.uuid,
+               store_path=args.store, gcroots_dir=args.gcroots,
+               interval=args.interval, cid=args.address, port=args.port)
+
+
+if __name__ == "__main__":
+    main()

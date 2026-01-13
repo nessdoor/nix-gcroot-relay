@@ -65,7 +65,7 @@ def unregister_roots(roots_dir: Path,
         rr.unlink(missing_ok=True)
 
 
-def main(store_path: Path, gcroots_dir: Path) -> None:
+def run_server(store_path: Path, gcroots_dir: Path) -> None:
     logging.debug("Opening stream...");
     # Use either the sockets passed to us by Systemd or read from stdin
     listen_fds = sd.listen_fds()
@@ -116,11 +116,15 @@ def main(store_path: Path, gcroots_dir: Path) -> None:
         logging.debug("Exiting...")
 
 
-if __name__ == "__main__":
+def main():
     args = parser.parse_args()
     if args.verbose:
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
 
-    main(store_path=args.store.resolve(), gcroots_dir=args.gcroots.resolve())
+    run_server(store_path=args.store.resolve(), gcroots_dir=args.gcroots.resolve())
+
+
+if __name__ == "__main__":
+    main()

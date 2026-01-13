@@ -1,0 +1,11 @@
+[project]
+name = "gcroot-relay-client"
+version = "0.1"
+requires-python = ">= 3.9"
+
+[project.scripts]
+gcroot-relay-client = "gcroot_relay_client.main:main"
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"

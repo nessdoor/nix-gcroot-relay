@@ -6,6 +6,7 @@ pkgs.mkShell {
   ];
 
   packages = with pkgs; [
+    nil
     (python3.withPackages (pps: with pps; [
       systemd-python
       python-lsp-server
